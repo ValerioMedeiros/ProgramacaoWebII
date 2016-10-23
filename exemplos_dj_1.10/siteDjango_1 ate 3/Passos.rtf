@@ -1,0 +1,365 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Corbel;\f2\fnil\fcharset0 Consolas;
+\f3\fnil\fcharset0 Consolas-Bold;\f4\fnil\fcharset0 Consolas-Italic;}
+{\colortbl;\red255\green255\blue255;\red13\green47\blue29;\red13\green47\blue29;\red255\green255\blue255;
+\red33\green157\blue99;\red14\green60\blue38;\red191\green238\blue213;\red15\green112\blue1;\red246\green246\blue246;
+\red0\green0\blue255;\red169\green14\blue26;\red171\green79\blue117;\red83\green83\blue83;\red51\green110\blue109;
+\red151\green0\blue255;\red173\green103\blue5;\red19\green8\blue105;\red106\green128\blue31;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww19000\viewh9560\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\pard\pardeftab720\sl844\sa460\partightenfactor0
+
+\f1\fs76 \cf2 \expnd0\expndtw0\kerning0
+Escrevendo sua primeira aplica\'e7\'e3o Django, parte 3\
+VIEWS\
+\pard\pardeftab720\sl633\sa345\partightenfactor0
+
+\fs58 \cf3 \cb4 \outl0\strokewidth0 \strokec3 1) Escrevendo mais views
+\b\fs46 \cf5 \strokec5 \
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f2\b0\fs28 \cf6 \cb7 \strokec6 polls/views.py\
+
+\f3\b \cf8 \cb9 \strokec8 def
+\f2\b0 \cf6 \strokec6  \cf10 \strokec10 detail\cf6 \strokec6 (request, question_id):\
+    
+\f3\b \cf8 \strokec8 return
+\f2\b0 \cf6 \strokec6  HttpResponse(\cf11 \strokec11 "You're looking at question 
+\f3\b \cf12 \strokec12 %s
+\f2\b0 \cf11 \strokec11 ."\cf6 \strokec6  \cf13 \strokec13 %\cf6 \strokec6  question_id)\
+\
+
+\f3\b \cf8 \strokec8 def
+\f2\b0 \cf6 \strokec6  \cf10 \strokec10 results\cf6 \strokec6 (request, question_id):\
+    response \cf13 \strokec13 =\cf6 \strokec6  \cf11 \strokec11 "You're looking at the results of question 
+\f3\b \cf12 \strokec12 %s
+\f2\b0 \cf11 \strokec11 ."\cf6 \strokec6 \
+    
+\f3\b \cf8 \strokec8 return
+\f2\b0 \cf6 \strokec6  HttpResponse(response \cf13 \strokec13 %\cf6 \strokec6  question_id)\
+\
+
+\f3\b \cf8 \strokec8 def
+\f2\b0 \cf6 \strokec6  \cf10 \strokec10 vote\cf6 \strokec6 (request, question_id):\
+    
+\f3\b \cf8 \strokec8 return
+\f2\b0 \cf6 \strokec6  HttpResponse(\cf11 \strokec11 "You're voting on question 
+\f3\b \cf12 \strokec12 %s
+\f2\b0 \cf11 \strokec11 ."\cf6 \strokec6  \cf13 \strokec13 %\cf6 \strokec6  question_id)\cb1 \
+\pard\pardeftab720\sl633\sa345\partightenfactor0
+
+\f1\fs58 \cf3 \cb4 \strokec3 \
+2) Defina as urls para chamar cada fun\'e7\'e3o.\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f2\fs28 \cf6 \cb7 \strokec6 polls/urls.py\
+
+\f3\b \cf8 \cb9 \strokec8 from
+\f2\b0 \cf6 \strokec6  
+\f3\b \cf10 \strokec10 django.conf.urls
+\f2\b0 \cf6 \strokec6  
+\f3\b \cf8 \strokec8 import
+\f2\b0 \cf6 \strokec6  url\
+\
+
+\f3\b \cf8 \strokec8 from
+\f2\b0 \cf6 \strokec6  
+\f3\b \cf10 \strokec10 .
+\f2\b0 \cf6 \strokec6  
+\f3\b \cf8 \strokec8 import
+\f2\b0 \cf6 \strokec6  views\
+\
+urlpatterns \cf13 \strokec13 =\cf6 \strokec6  [\
+    
+\f4\i \cf14 \strokec14 # ex: /polls/
+\f2\i0 \cf6 \strokec6 \
+    url(\cf11 \strokec11 r'^$'\cf6 \strokec6 , views\cf13 \strokec13 .\cf6 \strokec6 index, name\cf13 \strokec13 =\cf11 \strokec11 'index'\cf6 \strokec6 ),\
+    
+\f4\i \cf14 \strokec14 # ex: /polls/5/
+\f2\i0 \cf6 \strokec6 \
+    url(\cf11 \strokec11 r'^(?P<question_id>[0-9]+)/$'\cf6 \strokec6 , views\cf13 \strokec13 .\cf6 \strokec6 detail, name\cf13 \strokec13 =\cf11 \strokec11 'detail'\cf6 \strokec6 ),\
+    
+\f4\i \cf14 \strokec14 # ex: /polls/5/results/
+\f2\i0 \cf6 \strokec6 \
+    url(\cf11 \strokec11 r'^(?P<question_id>[0-9]+)/results/$'\cf6 \strokec6 , views\cf13 \strokec13 .\cf6 \strokec6 results, name\cf13 \strokec13 =\cf11 \strokec11 'results'\cf6 \strokec6 ),\
+    
+\f4\i \cf14 \strokec14 # ex: /polls/5/vote/
+\f2\i0 \cf6 \strokec6 \
+    url(\cf11 \strokec11 r'^(?P<question_id>[0-9]+)/vote/$'\cf6 \strokec6 , views\cf13 \strokec13 .\cf6 \strokec6 vote, name\cf13 \strokec13 =\cf11 \strokec11 'vote'\cf6 \strokec6 ),\
+]\cb1 \
+\pard\pardeftab720\sl633\sa345\partightenfactor0
+
+\f1\fs46 \cf3 \cb4 \strokec3 Obs: Voc\'ea pode testar a chamada dos m\'e9todos:
+\fs58 \
+\pard\pardeftab720\sl340\partightenfactor0
+
+\fs28 \cf3 localhost:8000/polls/34/results/\'94\
+ e \'93\cf2 \cb1 \outl0\strokewidth0 localhost:8000\cf3 \cb4 \outl0\strokewidth0 \strokec3 /polls/34/vote/\'93\
+\
+\
+\pard\pardeftab720\sl633\sa345\partightenfactor0
+
+\fs58 \cf3 3) Escreva views que fa\'e7am algo\
+
+\fs36 Para buscar uma lista de quest\'f5es no banco ordenadas pela data, segue o comando view abaixo.
+\fs58 \
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f2\fs28 \cf6 \cb7 \strokec6 polls/views.py\
+
+\f3\b \cf8 \cb9 \strokec8 from
+\f2\b0 \cf6 \strokec6  
+\f3\b \cf10 \strokec10 django.http
+\f2\b0 \cf6 \strokec6  
+\f3\b \cf8 \strokec8 import
+\f2\b0 \cf6 \strokec6  HttpResponse\
+\
+
+\f3\b \cf8 \strokec8 from
+\f2\b0 \cf6 \strokec6  
+\f3\b \cf10 \strokec10 .models
+\f2\b0 \cf6 \strokec6  
+\f3\b \cf8 \strokec8 import
+\f2\b0 \cf6 \strokec6  Question\
+\
+\
+
+\f3\b \cf8 \strokec8 def
+\f2\b0 \cf6 \strokec6  \cf10 \strokec10 index\cf6 \strokec6 (request):\
+    latest_question_list \cf13 \strokec13 =\cf6 \strokec6  Question\cf13 \strokec13 .\cf6 \strokec6 objects\cf13 \strokec13 .\cf6 \strokec6 order_by(\cf11 \strokec11 '-pub_date'\cf6 \strokec6 )[:\cf13 \strokec13 5\cf6 \strokec6 ]\
+    output \cf13 \strokec13 =\cf6 \strokec6  \cf11 \strokec11 ', '\cf13 \strokec13 .\cf6 \strokec6 join([q\cf13 \strokec13 .\cf6 \strokec6 question_text 
+\f3\b \cf8 \strokec8 for
+\f2\b0 \cf6 \strokec6  q 
+\f3\b \cf15 \strokec15 in
+\f2\b0 \cf6 \strokec6  latest_question_list])\
+    
+\f3\b \cf8 \strokec8 return
+\f2\b0 \cf6 \strokec6  HttpResponse(output)\
+\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f4\i \cf14 \strokec14 # Leave the rest of the views (detail, results, vote) unchanged
+\f2\i0 \cf6 \cb1 \strokec6 \
+\pard\pardeftab720\sl844\sa460\partightenfactor0
+
+\f0\fs24 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+
+\fs54 3) 
+\f1\fs58 \cf3 \cb4 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec3 crie um diret\'f3rio chamado `` templates`` em seu diret\'f3rio 
+\f2 \cf6 \strokec6 polls
+\f1 \cf3 \strokec3 . O Django ir\'e1 procurar templates l\'e1.\
+\pard\pardeftab720\sl340\sa280\partightenfactor0
+
+\fs28 \cf3 Ponha o seguinte c\'f3digo neste template:\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f2 \cf6 \cb7 \strokec6 polls/templates/polls/index.html\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\fs34 \cf16 \cb9 \strokec16 \{%\cf6 \strokec6  
+\f3\b \cf8 \strokec8 if
+\f2\b0 \cf6 \strokec6  \cf17 \strokec17 latest_question_list\cf6 \strokec6  \cf16 \strokec16 %\}\cf6 \strokec6 \
+    <
+\f3\b \cf8 \strokec8 ul
+\f2\b0 \cf6 \strokec6 >\
+    \cf16 \strokec16 \{%\cf6 \strokec6  
+\f3\b \cf8 \strokec8 for
+\f2\b0 \cf6 \strokec6  \cf17 \strokec17 question\cf6 \strokec6  
+\f3\b \cf8 \strokec8 in
+\f2\b0 \cf6 \strokec6  \cf17 \strokec17 latest_question_list\cf6 \strokec6  \cf16 \strokec16 %\}\cf6 \strokec6 \
+        <
+\f3\b \cf8 \strokec8 li
+\f2\b0 \cf6 \strokec6 ><
+\f3\b \cf8 \strokec8 a
+\f2\b0 \cf6 \strokec6  \cf18 \strokec18 href\cf13 \strokec13 =\cf11 \strokec11 "/polls/\cf16 \strokec16 \{\{\cf6 \strokec6  \cf17 \strokec17 question.id\cf6 \strokec6  \cf16 \strokec16 \}\}\cf11 \strokec11 /"\cf6 \strokec6 >\cf16 \strokec16 \{\{\cf6 \strokec6  \cf17 \strokec17 question.question_text\cf6 \strokec6  \cf16 \strokec16 \}\}\cf6 \strokec6 </
+\f3\b \cf8 \strokec8 a
+\f2\b0 \cf6 \strokec6 ></
+\f3\b \cf8 \strokec8 li
+\f2\b0 \cf6 \strokec6 >\
+    \cf16 \strokec16 \{%\cf6 \strokec6  
+\f3\b \cf8 \strokec8 endfor
+\f2\b0 \cf6 \strokec6  \cf16 \strokec16 %\}\cf6 \strokec6 \
+    </
+\f3\b \cf8 \strokec8 ul
+\f2\b0 \cf6 \strokec6 >\
+\cf16 \strokec16 \{%\cf6 \strokec6  
+\f3\b \cf8 \strokec8 else
+\f2\b0 \cf6 \strokec6  \cf16 \strokec16 %\}\cf6 \strokec6 \
+    <
+\f3\b \cf8 \strokec8 p
+\f2\b0 \cf6 \strokec6 >No polls are available.</
+\f3\b \cf8 \strokec8 p
+\f2\b0 \cf6 \strokec6 >\
+\cf16 \strokec16 \{%\cf6 \strokec6  
+\f3\b \cf8 \strokec8 endif
+\f2\b0 \cf6 \strokec6  \cf16 \strokec16 %\}\cf6 \strokec6 \
+\pard\pardeftab720\sl340\sa280\partightenfactor0
+
+\f1\fs28 \cf3 \cb4 \strokec3 Agora vamos atualizar nossa view 
+\f3\b \cf6 \strokec6 index
+\f1\b0 \cf3 \strokec3  em 
+\f3\b \cf6 \strokec6 polls/views.py
+\f1\b0 \cf3 \strokec3  para usar o template:\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f2 \cf6 \cb7 \strokec6 polls/views.py\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f3\b\fs34 \cf8 \cb9 \strokec8 from
+\f2\b0 \cf6 \strokec6  
+\f3\b \cf10 \strokec10 django.http
+\f2\b0 \cf6 \strokec6  
+\f3\b \cf8 \strokec8 import
+\f2\b0 \cf6 \strokec6  HttpResponse\
+
+\f3\b \cf8 \strokec8 from
+\f2\b0 \cf6 \strokec6  
+\f3\b \cf10 \strokec10 django.template
+\f2\b0 \cf6 \strokec6  
+\f3\b \cf8 \strokec8 import
+\f2\b0 \cf6 \strokec6  loader\
+\
+
+\f3\b \cf8 \strokec8 from
+\f2\b0 \cf6 \strokec6  
+\f3\b \cf10 \strokec10 .models
+\f2\b0 \cf6 \strokec6  
+\f3\b \cf8 \strokec8 import
+\f2\b0 \cf6 \strokec6  Question\
+\
+\
+
+\f3\b \cf8 \strokec8 def
+\f2\b0 \cf6 \strokec6  \cf10 \strokec10 index\cf6 \strokec6 (request):\
+    latest_question_list \cf13 \strokec13 =\cf6 \strokec6  Question\cf13 \strokec13 .\cf6 \strokec6 objects\cf13 \strokec13 .\cf6 \strokec6 order_by(\cf11 \strokec11 '-pub_date'\cf6 \strokec6 )[:\cf13 \strokec13 5\cf6 \strokec6 ]\
+    template \cf13 \strokec13 =\cf6 \strokec6  loader\cf13 \strokec13 .\cf6 \strokec6 get_template(\cf11 \strokec11 'polls/index.html'\cf6 \strokec6 )\
+    context \cf13 \strokec13 =\cf6 \strokec6  \{\
+        \cf11 \strokec11 'latest_question_list'\cf6 \strokec6 : latest_question_list,\
+    \}\
+    
+\f3\b \cf8 \strokec8 return
+\f2\b0 \cf6 \strokec6  HttpResponse(template\cf13 \strokec13 .\cf6 \strokec6 render(context, request))\
+\
+\pard\pardeftab720\sl633\sa345\partightenfactor0
+
+\f1\fs58 \cf3 \cb4 \strokec3 \
+4) Levantando um erro 404{\field{\*\fldinst{HYPERLINK "https://docs.djangoproject.com/pt-br/1.10/intro/tutorial03/#raising-a-404-error"}}{\fldrslt 
+\b\fs46 \cf5 \strokec5 \'b6}}\
+\pard\pardeftab720\sl340\sa280\partightenfactor0
+
+\fs28 \cf3 Agora, vamos abordar a view de detalhe de pergunta \'96 a p\'e1gina que mostra as quest\'f5es para uma enquete lan\'e7ada. Aqui esta a view:\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f2 \cf6 \cb7 \strokec6 polls/views.py\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f3\b\fs34 \cf8 \cb9 \strokec8 from
+\f2\b0 \cf6 \strokec6  
+\f3\b \cf10 \strokec10 django.http
+\f2\b0 \cf6 \strokec6  
+\f3\b \cf8 \strokec8 import
+\f2\b0 \cf6 \strokec6  Http404\
+
+\f3\b \cf8 \strokec8 from
+\f2\b0 \cf6 \strokec6  
+\f3\b \cf10 \strokec10 django.shortcuts
+\f2\b0 \cf6 \strokec6  
+\f3\b \cf8 \strokec8 import
+\f2\b0 \cf6 \strokec6  render\
+\
+
+\f3\b \cf8 \strokec8 from
+\f2\b0 \cf6 \strokec6  
+\f3\b \cf10 \strokec10 .models
+\f2\b0 \cf6 \strokec6  
+\f3\b \cf8 \strokec8 import
+\f2\b0 \cf6 \strokec6  Question\
+
+\f4\i \cf14 \strokec14 # ...
+\f2\i0 \cf6 \strokec6 \
+
+\f3\b \cf8 \strokec8 def
+\f2\b0 \cf6 \strokec6  \cf10 \strokec10 detail\cf6 \strokec6 (request, question_id):\
+    
+\f3\b \cf8 \strokec8 try
+\f2\b0 \cf6 \strokec6 :\
+        question \cf13 \strokec13 =\cf6 \strokec6  Question\cf13 \strokec13 .\cf6 \strokec6 objects\cf13 \strokec13 .\cf6 \strokec6 get(pk\cf13 \strokec13 =\cf6 \strokec6 question_id)\
+    
+\f3\b \cf8 \strokec8 except
+\f2\b0 \cf6 \strokec6  Question\cf13 \strokec13 .\cf6 \strokec6 DoesNotExist:\
+        
+\f3\b \cf8 \strokec8 raise
+\f2\b0 \cf6 \strokec6  Http404(\cf11 \strokec11 "Question does not exist"\cf6 \strokec6 )\
+    
+\f3\b \cf8 \strokec8 return
+\f2\b0 \cf6 \strokec6  render(request, \cf11 \strokec11 'polls/detail.html'\cf6 \strokec6 , \{\cf11 \strokec11 'question'\cf6 \strokec6 : question\})\
+\pard\pardeftab720\sl340\sa280\partightenfactor0
+
+\f1\fs28 \cf3 \cb4 \strokec3 Um novo conceito aqui: A view levanta uma exce\'e7\'e3o {\field{\*\fldinst{HYPERLINK "https://docs.djangoproject.com/pt-br/1.10/topics/http/views/#django.http.Http404"}}{\fldrslt 
+\f3\b \cf6 \strokec6 Http404}} se a enquete com ID requisitado n\'e3o existir.\
+
+\fs44 5) Criando o template de detail
+\fs28 \
+N\'f3s iremos discutir o que voc\'ea poderia colocar no template 
+\f3\b \cf6 \strokec6 polls/detail.html
+\f1\b0 \cf3 \strokec3 mais tarde, mas se voc\'ea gostaria de ter o exemplo acima funcionando rapidamente, um arquivo contendo:\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f2 \cf6 \cb7 \strokec6 polls/templates/polls/detail.html\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\fs34 \cf16 \cb9 \strokec16 \{\{\cf6 \strokec6  \cf17 \strokec17 question\cf6 \strokec6  \cf16 \strokec16 \}\}\cf6 \cb1 \strokec6 \
+\pard\pardeftab720\sl400\partightenfactor0
+\cf6 \
+
+\fs46 6)Detalhando o template detail\
+\pard\pardeftab720\sl633\sa345\partightenfactor0
+
+\f1\fs58 \cf3 \cb4 \strokec3 Use o sistema de template{\field{\*\fldinst{HYPERLINK "https://docs.djangoproject.com/pt-br/1.10/intro/tutorial03/#use-the-template-system"}}{\fldrslt 
+\b\fs46 \cf5 \strokec5 \'b6}}\
+\pard\pardeftab720\sl340\sa280\partightenfactor0
+
+\fs28 \cf3 De volta para a view 
+\f3\b \cf6 \strokec6 detail()
+\f1\b0 \cf3 \strokec3  da nossa aplica\'e7\'e3o de enquentes. Dada a vari\'e1vel de contexto 
+\f3\b \cf6 \strokec6 question
+\f1\b0 \cf3 \strokec3 , aqui est\'e1 como o template 
+\f3\b \cf6 \strokec6 polls/detail.htm
+\f1\b0 \cf3 \strokec3  deve ser:\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f2 \cf6 \cb7 \strokec6 polls/templates/polls/detail.html\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\fs34 \cf6 \cb9 <
+\f3\b \cf8 \strokec8 h1
+\f2\b0 \cf6 \strokec6 >\cf16 \strokec16 \{\{\cf6 \strokec6  \cf17 \strokec17 question.question_text\cf6 \strokec6  \cf16 \strokec16 \}\}\cf6 \strokec6 </
+\f3\b \cf8 \strokec8 h1
+\f2\b0 \cf6 \strokec6 >\
+<
+\f3\b \cf8 \strokec8 ul
+\f2\b0 \cf6 \strokec6 >\
+\pard\pardeftab720\sl400\partightenfactor0
+\cf16 \strokec16 \{%\cf6 \strokec6  
+\f3\b \cf8 \strokec8 for
+\f2\b0 \cf6 \strokec6  \cf17 \strokec17 choice\cf6 \strokec6  
+\f3\b \cf8 \strokec8 in
+\f2\b0 \cf6 \strokec6  \cf17 \strokec17 question.choice_set.all\cf6 \strokec6  \cf16 \strokec16 %\}\cf6 \strokec6 \
+    <
+\f3\b \cf8 \strokec8 li
+\f2\b0 \cf6 \strokec6 >\cf16 \strokec16 \{\{\cf6 \strokec6  \cf17 \strokec17 choice.choice_text\cf6 \strokec6  \cf16 \strokec16 \}\}\cf6 \strokec6 </
+\f3\b \cf8 \strokec8 li
+\f2\b0 \cf6 \strokec6 >\
+\cf16 \strokec16 \{%\cf6 \strokec6  
+\f3\b \cf8 \strokec8 endfor
+\f2\b0 \cf6 \strokec6  \cf16 \strokec16 %\}\cf6 \strokec6 \
+</
+\f3\b \cf8 \strokec8 ul
+\f2\b0 \cf6 \strokec6 >\
+\pard\pardeftab720\sl400\partightenfactor0
+\cf6 \cb1 \
+\
+}

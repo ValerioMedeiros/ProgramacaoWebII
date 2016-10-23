@@ -1,0 +1,263 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Corbel;\f2\fnil\fcharset0 Consolas;
+\f3\fnil\fcharset0 Consolas-Bold;\f4\fnil\fcharset0 Menlo-Regular;\f5\fnil\fcharset0 Menlo-Bold;
+\f6\fnil\fcharset0 Menlo-Italic;}
+{\colortbl;\red255\green255\blue255;\red13\green47\blue29;\red14\green60\blue38;\red191\green238\blue213;
+\red15\green112\blue1;\red246\green246\blue246;\red0\green0\blue255;\red83\green83\blue83;\red169\green14\blue26;
+\red13\green47\blue29;\red255\green255\blue255;\red0\green0\blue109;\red0\green0\blue109;\red109\green109\blue109;
+\red0\green0\blue162;\red82\green0\blue135;\red0\green0\blue254;\red14\green110\blue109;\red160\green0\blue163;
+\red128\green63\blue122;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww19000\viewh9560\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\pard\pardeftab720\sl844\sa460\partightenfactor0
+
+\f1\fs76 \cf2 \expnd0\expndtw0\kerning0
+Escrevendo sua primeira aplica\'e7\'e3o Django, parte 2
+\f0\fs24 \cf0 \kerning1\expnd0\expndtw0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b \cf0 1 - Coloca o time em settings.py  do projeto
+\b0 \
+	LANGUAGE_CODE = 'pt-br'\
+	TIME_ZONE = 'America/Fortaleza'\
+	\
+Observa\'e7\'f5es do banco:\
+* \'c9 poss\'edvel configurar diferentes bancos, de forma simples e f\'e1cil. \
+DATABASES = \{\
+    'default': \{\
+        'ENGINE': 'django.db.backends.sqlite3',  # tipo do banco \
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'), #local de acesso e nome de arquivo\
+    \}\
+\}\
+\
+\
+
+\b 2 - Criando o modelo \
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f2\b0\fs28 \cf3 \cb4 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec3 polls/models.py\
+
+\f3\b \cf5 \cb6 \strokec5 from
+\f2\b0 \cf3 \strokec3  
+\f3\b \cf7 \strokec7 django.db
+\f2\b0 \cf3 \strokec3  
+\f3\b \cf5 \strokec5 import
+\f2\b0 \cf3 \strokec3  models\
+\
+\
+
+\f3\b \cf5 \strokec5 class
+\f2\b0 \cf3 \strokec3  
+\f3\b \cf7 \strokec7 Question
+\f2\b0 \cf3 \strokec3 (models\cf8 \strokec8 .\cf3 \strokec3 Model):\
+    question_text \cf8 \strokec8 =\cf3 \strokec3  models\cf8 \strokec8 .\cf3 \strokec3 CharField(max_length\cf8 \strokec8 =200\cf3 \strokec3 )\
+    pub_date \cf8 \strokec8 =\cf3 \strokec3  models\cf8 \strokec8 .\cf3 \strokec3 DateTimeField(\cf9 \strokec9 'date published'\cf3 \strokec3 )\
+\
+\
+
+\f3\b \cf5 \strokec5 class
+\f2\b0 \cf3 \strokec3  
+\f3\b \cf7 \strokec7 Choice
+\f2\b0 \cf3 \strokec3 (models\cf8 \strokec8 .\cf3 \strokec3 Model):\
+    question \cf8 \strokec8 =\cf3 \strokec3  models\cf8 \strokec8 .\cf3 \strokec3 ForeignKey(Question, on_delete\cf8 \strokec8 =\cf3 \strokec3 models\cf8 \strokec8 .\cf3 \strokec3 CASCADE)\
+    choice_text \cf8 \strokec8 =\cf3 \strokec3  models\cf8 \strokec8 .\cf3 \strokec3 CharField(max_length\cf8 \strokec8 =200\cf3 \strokec3 )\
+    votes \cf8 \strokec8 =\cf3 \strokec3  models\cf8 \strokec8 .\cf3 \strokec3 IntegerField(default\cf8 \strokec8 =0\cf3 \strokec3 )\cb1 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+
+\b 3 - Tornando o app vis\'edvel (instalado)\
+\
+\pard\pardeftab720\sl340\sa280\partightenfactor0
+
+\f1\b0\fs28 \cf10 \cb11 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec10 Para incluir a aplica\'e7\'e3o no nosso projeto, precisamos adicionar a refer\'eancia \'e0 classe de configura\'e7\'e3o da aplica\'e7\'e3o na defini\'e7\'e3o do {\field{\*\fldinst{HYPERLINK "https://docs.djangoproject.com/pt-br/1.10/ref/settings/#std:setting-INSTALLED_APPS"}}{\fldrslt 
+\f3\b \cf3 \strokec3 INSTALLED_APPS}} . A classe
+\f3\b \cf3 \strokec3 PollsConfig``est\'e1 no arquivo\'a0 :file:`polls/apps.py`, ent\'e3o seucaminha pontuado \'e9 ``'polls.apps.PollsConfig'
+\f1\b0 \cf10 \strokec10 . Edite o arquivo
+\f3\b \cf3 \strokec3 mysite/settings.py
+\f1\b0 \cf10 \strokec10  e adicione aquele caminho com nota\'e7\'e3o de ponto a defini\'e7\'e3o do {\field{\*\fldinst{HYPERLINK "https://docs.djangoproject.com/pt-br/1.10/ref/settings/#std:setting-INSTALLED_APPS"}}{\fldrslt 
+\f3\b \cf3 \strokec3 INSTALLED_APPS}}. Ficar\'e1 parecido como aqui:\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f2 \cf3 \cb4 \strokec3 mysite/settings.py\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\fs34 \cf3 \cb6 INSTALLED_APPS \cf8 \strokec8 =\cf3 \strokec3  [\
+    \cf9 \strokec9 'polls.apps.PollsConfig'\cf3 \strokec3 ,\
+    \cf9 \strokec9 'django.contrib.admin'\cf3 \strokec3 ,\
+    \cf9 \strokec9 'django.contrib.auth'\cf3 \strokec3 ,\
+    \cf9 \strokec9 'django.contrib.contenttypes'\cf3 \strokec3 ,\
+    \cf9 \strokec9 'django.contrib.sessions'\cf3 \strokec3 ,\
+    \cf9 \strokec9 'django.contrib.messages'\cf3 \strokec3 ,\
+    \cf9 \strokec9 'django.contrib.staticfiles'\cf3 \strokec3 ,\
+]\cb1 \
+\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f3\b \cf3 4 - Criar a representa\'e7\'e3o em python dos modelos \
+\pard\pardeftab720\sl320\partightenfactor0
+
+\fs28 \cf12 \strokec12 $
+\f2\b0 \cf3 \strokec3  python manage.py makemigrations polls\
+\
+ * para visualizar a representa\'e7\'e3o\
+
+\f3\b \cf12 \strokec12 $
+\f2\b0 \cf3 \strokec3  python manage.py sqlmigrate polls 0001\
+\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f3\b \cf3 \
+5 - Cria a representa\'e7\'e3o no banco \
+\pard\pardeftab720\sl320\partightenfactor0
+\cf12 \strokec12 $
+\f2\b0 \cf3 \strokec3  python manage.py migrate\
+\pard\pardeftab720\sl320\partightenfactor0
+\cf3 \
+\
+\pard\pardeftab720\sl633\sa345\partightenfactor0
+
+\f1\fs58 \cf10 \cb11 \strokec10 Brincando com a API do banco\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f3\b\fs28 \cf12 \cb1 \strokec12 $
+\f2\b0 \cf3 \strokec3  python manage.py shell\
+
+\f3\b \cf12 \strokec12 >>> \cf5 \strokec5 import
+\f2\b0 \cf3 \strokec3  
+\f3\b \cf7 \strokec7 django
+\f2\b0 \cf3 \strokec3 \
+
+\f3\b \cf12 \strokec12 >>> 
+\f2\b0 \cf3 \strokec3 django\cf8 \strokec8 .\cf3 \strokec3 setup()\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f4\fs22 \cf0 \kerning1\expnd0\expndtw0 \CocoaLigature0 \outl0\strokewidth0 >>> import django\
+>>> django.setup()\
+>>> from polls.models import Question, Choice \
+>>> Question.objects.all()\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f3\b\fs28 \cf12 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \outl0\strokewidth0 \strokec12 >>> \cf5 \strokec5 from
+\f2\b0 \cf3 \strokec3  
+\f3\b \cf7 \strokec7 django.utils
+\f2\b0 \cf3 \strokec3  
+\f3\b \cf5 \strokec5 import
+\f2\b0 \cf3 \strokec3  timezone\
+
+\f3\b \cf12 \strokec12 >>> 
+\f2\b0 \cf3 \strokec3 q \cf8 \strokec8 =\cf3 \strokec3  Question(question_text\cf8 \strokec8 =\cf9 \strokec9 "What's new?"\cf3 \strokec3 , pub_date\cf8 \strokec8 =\cf3 \strokec3 timezone\cf8 \strokec8 .\cf3 \strokec3 now())\
+
+\f3\b \cf12 \strokec12 >>> 
+\f2\b0 \cf3 \strokec3 q\cf8 \strokec8 .\cf3 \strokec3 save()\
+
+\f3\b \cf12 \strokec12 >>> 
+\f2\b0 \cf3 \strokec3 q\cf8 \strokec8 .\cf3 \strokec3 id\
+
+\f3\b \cf12 \strokec12 >>> 
+\f2\b0 \cf3 \strokec3 q\cf8 \strokec8 .\cf3 \strokec3 question_text\
+
+\f3\b \cf12 \strokec12 >>> 
+\f2\b0 \cf3 \strokec3 q\cf8 \strokec8 .\cf3 \strokec3 pub_date\
+
+\f3\b \cf12 \strokec12 >>> 
+\f2\b0 \cf3 \strokec3 q\cf8 \strokec8 .\cf3 \strokec3 question_text \cf8 \strokec8 =\cf3 \strokec3  \cf9 \strokec9 "What's up?"\cf3 \strokec3 \
+
+\f3\b \cf12 \strokec12 >>> 
+\f2\b0 \cf3 \strokec3 q\cf8 \strokec8 .\cf3 \strokec3 save()\
+
+\f3\b \cf12 \strokec12 >>> 
+\f2\b0 \cf3 \strokec3 Question\cf8 \strokec8 .\cf3 \strokec3 objects\cf8 \strokec8 .\cf3 \strokec3 all()\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f1\fs58 \cf10 \cb11 \strokec10 \
+\pard\pardeftab720\sl633\sa345\partightenfactor0
+\cf10 6- Cria as fun\'e7\'f5es str e adiciona um m\'e9todo no modelo (models.py)\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f5\b\fs24 \cf13 \cb1 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 import 
+\f4\b0 \cf0 datetime\uc0\u8232 
+\f5\b \cf13 from 
+\f4\b0 \cf0 django.db 
+\f5\b \cf13 import 
+\f4\b0 \cf0 models\uc0\u8232 
+\f5\b \cf13 from 
+\f4\b0 \cf0 django.utils 
+\f5\b \cf13 import 
+\f4\b0 \cf0 timezone\uc0\u8232 
+\f5\b \cf13 from 
+\f4\b0 \cf0 django.utils.encoding 
+\f5\b \cf13 import 
+\f4\b0 \cf0 python_2_unicode_compatible\uc0\u8232 \u8232 
+\f6\i \cf14 # Create your models here.\uc0\u8232 
+\f4\i0 \cf0 @\cf15 python_2_unicode_compatible  
+\f6\i \cf14 # only if you need to support Python 2\uc0\u8232 
+\f5\i0\b \cf13 class 
+\f4\b0 \cf0 Question(models.Model):\uc0\u8232     question_text = models.CharField(\cf16 max_length\cf0 =\cf17 200\cf0 )\uc0\u8232     question_obs = models.CharField(\cf16 max_length\cf0 =\cf17 200\cf0 )\uc0\u8232     pub_date = models.DateTimeField(
+\f5\b \cf18 'date published'
+\f4\b0 \cf0 )\uc0\u8232 \u8232     
+\f5\b \cf13 def 
+\f4\b0 \cf19 __str__\cf0 (\cf20 self\cf0 ):\uc0\u8232         
+\f5\b \cf13 return 
+\f4\b0 \cf20 self\cf0 .question_text\uc0\u8232 \u8232 @\cf15 python_2_unicode_compatible  
+\f6\i \cf14 # only if you need to support Python 2\uc0\u8232 
+\f5\i0\b \cf13 class 
+\f4\b0 \cf0 Choice(models.Model):\uc0\u8232     question = models.ForeignKey(Question, \cf16 on_delete\cf0 =models.CASCADE)\uc0\u8232     choice_text = models.CharField(\cf16 max_length\cf0 =\cf17 200\cf0 )\uc0\u8232     votes = models.IntegerField(\cf16 default\cf0 =\cf17 0\cf0 )\uc0\u8232 \u8232     
+\f5\b \cf13 def 
+\f4\b0 \cf19 __str__\cf0 (\cf20 self\cf0 ):\uc0\u8232         
+\f5\b \cf13 return 
+\f4\b0 \cf20 self\cf0 .choice_text\uc0\u8232 \u8232     
+\f5\b \cf13 def 
+\f4\b0 \cf0 was_published_recently(\cf20 self\cf0 ):\uc0\u8232         
+\f5\b \cf13 return 
+\f4\b0 \cf20 self\cf0 .pub_date >= timezone.now() - datetime.timedelta(\cf16 days\cf0 =\cf17 1\cf0 )\uc0\u8232 \
+\pard\pardeftab720\sl633\sa345\partightenfactor0
+
+\f1\fs58 \cf10 \cb11 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec10 \
+7 - Criando um usu\'e1rio administrador\
+
+\fs26 $python manage.py createsuperuser \
+\
+
+\fs46 8 - 
+\b\fs48 Torne a aplica\'e7\'e3o de enquetes edit\'e1vel no site de administra\'e7\'e3o\
+\pard\pardeftab720\sl340\sa280\partightenfactor0
+
+\b0\fs28 \cf10 Mas onde est\'e1 nossa aplica\'e7\'e3o de enquete? Ela n\'e3o est\'e1 vis\'edvel na p\'e1gina principal do site de administra\'e7\'e3o.\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f2 \cf3 \cb4 \strokec3 polls/admin.py\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f3\b\fs34 \cf5 \cb6 \strokec5 from
+\f2\b0 \cf3 \strokec3  
+\f3\b \cf7 \strokec7 django.contrib
+\f2\b0 \cf3 \strokec3  
+\f3\b \cf5 \strokec5 import
+\f2\b0 \cf3 \strokec3  admin\
+\
+
+\f3\b \cf5 \strokec5 from
+\f2\b0 \cf3 \strokec3  
+\f3\b \cf7 \strokec7 .models
+\f2\b0 \cf3 \strokec3  
+\f3\b \cf5 \strokec5 import
+\f2\b0 \cf3 \strokec3  Question\
+\
+admin\cf8 \strokec8 .\cf3 \strokec3 site\cf8 \strokec8 .\cf3 \strokec3 register(Question)\cb1 \
+\pard\pardeftab720\sl633\sa345\partightenfactor0
+
+\f1\fs58 \cf10 \cb11 \strokec10 \
+\
+\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f2\fs28 \cf3 \cb1 \strokec3 \
+\
+}
