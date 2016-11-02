@@ -19,7 +19,7 @@ from django.contrib import admin
 
 urlpatterns = [
 
-    #url(r'^$', include('polls.urls')),#Redireciona a página principal para polls url
+    
     url(r'^polls/', include('polls.urls')),
     url(r'^admin/', admin.site.urls),
 ]

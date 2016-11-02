@@ -1,0 +1,354 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\froman\fcharset0 Times-Roman;\f1\fnil\fcharset0 Consolas;\f2\fnil\fcharset0 Consolas-Bold;
+\f3\fnil\fcharset0 Corbel;\f4\fnil\fcharset0 Consolas-Italic;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red14\green60\blue38;\red191\green238\blue213;
+\red246\green246\blue246;\red15\green112\blue1;\red173\green103\blue5;\red19\green8\blue105;\red106\green128\blue31;
+\red83\green83\blue83;\red169\green14\blue26;\red13\green47\blue29;\red255\green255\blue255;\red0\green0\blue255;
+\red51\green110\blue109;\red197\green43\blue45;\red33\green157\blue99;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid1\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww19000\viewh20100\viewkind0
+\deftab720
+\pard\pardeftab720\sl440\sa298\partightenfactor0
+
+\f0\b\fs36 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Crie um formul\'e1rio simples\
+\pard\pardeftab720\sl280\partightenfactor0
+
+\b0\fs24 \cf2 Vamos atualizar nosso template de detalhamento da enquete \
+\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f1\fs28 \cf3 \cb4 \strokec3 polls/templates/polls/detail.html\
+\pard\pardeftab720\sl320\partightenfactor0
+\cf3 \cb5 <
+\f2\b \cf6 \strokec6 h1
+\f1\b0 \cf3 \strokec3 >\cf7 \strokec7 \{\{\cf3 \strokec3  \cf8 \strokec8 question.question_text\cf3 \strokec3  \cf7 \strokec7 \}\}\cf3 \strokec3 </
+\f2\b \cf6 \strokec6 h1
+\f1\b0 \cf3 \strokec3 >\
+\
+\pard\pardeftab720\sl320\partightenfactor0
+\cf7 \strokec7 \{%\cf3 \strokec3  
+\f2\b \cf6 \strokec6 if
+\f1\b0 \cf3 \strokec3  \cf8 \strokec8 error_message\cf3 \strokec3  \cf7 \strokec7 %\}\cf3 \strokec3 <
+\f2\b \cf6 \strokec6 p
+\f1\b0 \cf3 \strokec3 ><
+\f2\b \cf6 \strokec6 strong
+\f1\b0 \cf3 \strokec3 >\cf7 \strokec7 \{\{\cf3 \strokec3  \cf8 \strokec8 error_message\cf3 \strokec3  \cf7 \strokec7 \}\}\cf3 \strokec3 </
+\f2\b \cf6 \strokec6 strong
+\f1\b0 \cf3 \strokec3 ></
+\f2\b \cf6 \strokec6 p
+\f1\b0 \cf3 \strokec3 >\cf7 \strokec7 \{%\cf3 \strokec3  
+\f2\b \cf6 \strokec6 endif
+\f1\b0 \cf3 \strokec3  \cf7 \strokec7 %\}\cf3 \strokec3 \
+\
+<
+\f2\b \cf6 \strokec6 form
+\f1\b0 \cf3 \strokec3  \cf9 \strokec9 action\cf10 \strokec10 =\cf11 \strokec11 "\cf7 \strokec7 \{%\cf3 \strokec3  
+\f2\b \cf6 \strokec6 url
+\f1\b0 \cf3 \strokec3  \cf11 \strokec11 'polls:vote'\cf3 \strokec3  \cf8 \strokec8 question.id\cf3 \strokec3  \cf7 \strokec7 %\}\cf11 \strokec11 "\cf3 \strokec3  \cf9 \strokec9 method\cf10 \strokec10 =\cf11 \strokec11 "post"\cf3 \strokec3 >\
+\cf7 \strokec7 \{%\cf3 \strokec3  
+\f2\b \cf6 \strokec6 csrf_token
+\f1\b0 \cf3 \strokec3  \cf7 \strokec7 %\}\cf3 \strokec3 \
+\cf7 \strokec7 \{%\cf3 \strokec3  
+\f2\b \cf6 \strokec6 for
+\f1\b0 \cf3 \strokec3  \cf8 \strokec8 choice\cf3 \strokec3  
+\f2\b \cf6 \strokec6 in
+\f1\b0 \cf3 \strokec3  \cf8 \strokec8 question.choice_set.all\cf3 \strokec3  \cf7 \strokec7 %\}\cf3 \strokec3 \
+    <
+\f2\b \cf6 \strokec6 input
+\f1\b0 \cf3 \strokec3  \cf9 \strokec9 type\cf10 \strokec10 =\cf11 \strokec11 "radio"\cf3 \strokec3  \cf9 \strokec9 name\cf10 \strokec10 =\cf11 \strokec11 "choice"\cf3 \strokec3  \cf9 \strokec9 id\cf10 \strokec10 =\cf11 \strokec11 "choice\cf7 \strokec7 \{\{\cf3 \strokec3  \cf6 \strokec6 forloop\cf8 \strokec8 .counter\cf3 \strokec3  \cf7 \strokec7 \}\}\cf11 \strokec11 "\cf3 \strokec3  \cf9 \strokec9 value\cf10 \strokec10 =\cf11 \strokec11 "\cf7 \strokec7 \{\{\cf3 \strokec3  \cf8 \strokec8 choice.id\cf3 \strokec3  \cf7 \strokec7 \}\}\cf11 \strokec11 "\cf3 \strokec3  />\
+    <
+\f2\b \cf6 \strokec6 label
+\f1\b0 \cf3 \strokec3  \cf9 \strokec9 for\cf10 \strokec10 =\cf11 \strokec11 "choice\cf7 \strokec7 \{\{\cf3 \strokec3  \cf6 \strokec6 forloop\cf8 \strokec8 .counter\cf3 \strokec3  \cf7 \strokec7 \}\}\cf11 \strokec11 "\cf3 \strokec3 >\cf7 \strokec7 \{\{\cf3 \strokec3  \cf8 \strokec8 choice.choice_text\cf3 \strokec3  \cf7 \strokec7 \}\}\cf3 \strokec3 </
+\f2\b \cf6 \strokec6 label
+\f1\b0 \cf3 \strokec3 ><
+\f2\b \cf6 \strokec6 br
+\f1\b0 \cf3 \strokec3  />\
+\cf7 \strokec7 \{%\cf3 \strokec3  
+\f2\b \cf6 \strokec6 endfor
+\f1\b0 \cf3 \strokec3  \cf7 \strokec7 %\}\cf3 \strokec3 \
+<
+\f2\b \cf6 \strokec6 input
+\f1\b0 \cf3 \strokec3  \cf9 \strokec9 type\cf10 \strokec10 =\cf11 \strokec11 "submit"\cf3 \strokec3  \cf9 \strokec9 value\cf10 \strokec10 =\cf11 \strokec11 "Vote"\cf3 \strokec3  />\
+</
+\f2\b \cf6 \strokec6 form
+\f1\b0 \cf3 \strokec3 >\cb1 \
+\
+\
+\pard\pardeftab720\sl340\sa280\partightenfactor0
+
+\f3 \cf12 \cb13 \strokec12 Criamos uma implementa\'e7\'e3o falsa da fun\'e7\'e3o 
+\f2\b \cf3 \strokec3 vote()
+\f3\b0 \cf12 \strokec12 . Vamos criar a vers\'e3o real. Adicione o seguinte em 
+\f2\b \cf3 \strokec3 polls/views.py
+\f3\b0 \cf12 \strokec12 :\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f1 \cf3 \cb4 \strokec3 polls/views.py\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f2\b\fs34 \cf6 \cb5 \strokec6 from
+\f1\b0 \cf3 \strokec3  
+\f2\b \cf14 \strokec14 django.shortcuts
+\f1\b0 \cf3 \strokec3  
+\f2\b \cf6 \strokec6 import
+\f1\b0 \cf3 \strokec3  get_object_or_404, render\
+
+\f2\b \cf6 \strokec6 from
+\f1\b0 \cf3 \strokec3  
+\f2\b \cf14 \strokec14 django.http
+\f1\b0 \cf3 \strokec3  
+\f2\b \cf6 \strokec6 import
+\f1\b0 \cf3 \strokec3  HttpResponseRedirect, HttpResponse\
+
+\f2\b \cf6 \strokec6 from
+\f1\b0 \cf3 \strokec3  
+\f2\b \cf14 \strokec14 django.urls
+\f1\b0 \cf3 \strokec3  
+\f2\b \cf6 \strokec6 import
+\f1\b0 \cf3 \strokec3  reverse\
+\
+
+\f2\b \cf6 \strokec6 from
+\f1\b0 \cf3 \strokec3  
+\f2\b \cf14 \strokec14 .models
+\f1\b0 \cf3 \strokec3  
+\f2\b \cf6 \strokec6 import
+\f1\b0 \cf3 \strokec3  Choice, Question\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f4\i \cf15 \strokec15 # ...
+\f1\i0 \cf3 \strokec3 \
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f2\b \cf6 \strokec6 def
+\f1\b0 \cf3 \strokec3  \cf14 \strokec14 vote\cf3 \strokec3 (request, question_id):\
+    question \cf10 \strokec10 =\cf3 \strokec3  get_object_or_404(Question, pk\cf10 \strokec10 =\cf3 \strokec3 question_id)\
+    
+\f2\b \cf6 \strokec6 try
+\f1\b0 \cf3 \strokec3 :\
+        selected_choice \cf10 \strokec10 =\cf3 \strokec3  question\cf10 \strokec10 .\cf3 \strokec3 choice_set\cf10 \strokec10 .\cf3 \strokec3 get(pk\cf10 \strokec10 =\cf3 \strokec3 request\cf10 \strokec10 .\cf3 \strokec3 POST[\cf11 \strokec11 'choice'\cf3 \strokec3 ])\
+    
+\f2\b \cf6 \strokec6 except
+\f1\b0 \cf3 \strokec3  (
+\f2\b \cf16 \strokec16 KeyError
+\f1\b0 \cf3 \strokec3 , Choice\cf10 \strokec10 .\cf3 \strokec3 DoesNotExist):\
+        
+\f4\i \cf15 \strokec15 # Redisplay the question voting form.
+\f1\i0 \cf3 \strokec3 \
+        
+\f2\b \cf6 \strokec6 return
+\f1\b0 \cf3 \strokec3  render(request, \cf11 \strokec11 'polls/detail.html'\cf3 \strokec3 , \{\
+            \cf11 \strokec11 'question'\cf3 \strokec3 : question,\
+            \cf11 \strokec11 'error_message'\cf3 \strokec3 : \cf11 \strokec11 "You didn't select a choice."\cf3 \strokec3 ,\
+        \})\
+    
+\f2\b \cf6 \strokec6 else
+\f1\b0 \cf3 \strokec3 :\
+        selected_choice\cf10 \strokec10 .\cf3 \strokec3 votes \cf10 \strokec10 +=\cf3 \strokec3  \cf10 \strokec10 1\cf3 \strokec3 \
+        selected_choice\cf10 \strokec10 .\cf3 \strokec3 save()\
+        
+\f4\i \cf15 \strokec15 # Always return an HttpResponseRedirect after successfully dealing
+\f1\i0 \cf3 \strokec3 \
+        
+\f4\i \cf15 \strokec15 # with POST data. This prevents data from being posted twice if a
+\f1\i0 \cf3 \strokec3 \
+        
+\f4\i \cf15 \strokec15 # user hits the Back button.
+\f1\i0 \cf3 \strokec3 \
+        
+\f2\b \cf6 \strokec6 return
+\f1\b0 \cf3 \strokec3  HttpResponseRedirect(reverse(\cf11 \strokec11 'polls:results'\cf3 \strokec3 , args\cf10 \strokec10 =\cf3 \strokec3 (question\cf10 \strokec10 .\cf3 \strokec3 id,)))\
+\
+\pard\pardeftab720\sl340\sa280\partightenfactor0
+
+\f3\fs28 \cf12 \cb13 \strokec12 Depois que algu\'e9m votar em uma enquete, a view 
+\f2\b \cf3 \strokec3 vote()
+\f3\b0 \cf12 \strokec12  redireciona para a p\'e1gina de resultados da enquete. Vamos escrever essa view:\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f1 \cf3 \cb4 \strokec3 polls/views.py\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f2\b\fs34 \cf6 \cb5 \strokec6 from
+\f1\b0 \cf3 \strokec3  
+\f2\b \cf14 \strokec14 django.shortcuts
+\f1\b0 \cf3 \strokec3  
+\f2\b \cf6 \strokec6 import
+\f1\b0 \cf3 \strokec3  get_object_or_404, render\
+\
+\
+
+\f2\b \cf6 \strokec6 def
+\f1\b0 \cf3 \strokec3  \cf14 \strokec14 results\cf3 \strokec3 (request, question_id):\
+    question \cf10 \strokec10 =\cf3 \strokec3  get_object_or_404(Question, pk\cf10 \strokec10 =\cf3 \strokec3 question_id)\
+    
+\f2\b \cf6 \strokec6 return
+\f1\b0 \cf3 \strokec3  render(request, \cf11 \strokec11 'polls/results.html'\cf3 \strokec3 , \{\cf11 \strokec11 'question'\cf3 \strokec3 : question\})\
+\pard\pardeftab720\sl340\sa280\partightenfactor0
+
+\f3\fs28 \cf12 \cb13 \strokec12 \
+\
+Agora, crie o template 
+\f2\b \cf3 \strokec3 polls/results.html
+\f3\b0 \cf12 \strokec12 :\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f1 \cf3 \cb4 \strokec3 polls/templates/polls/results.html\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\fs34 \cf3 \cb5 <
+\f2\b \cf6 \strokec6 h1
+\f1\b0 \cf3 \strokec3 >\cf7 \strokec7 \{\{\cf3 \strokec3  \cf8 \strokec8 question.question_text\cf3 \strokec3  \cf7 \strokec7 \}\}\cf3 \strokec3 </
+\f2\b \cf6 \strokec6 h1
+\f1\b0 \cf3 \strokec3 >\
+\
+<
+\f2\b \cf6 \strokec6 ul
+\f1\b0 \cf3 \strokec3 >\
+\pard\pardeftab720\sl400\partightenfactor0
+\cf7 \strokec7 \{%\cf3 \strokec3  
+\f2\b \cf6 \strokec6 for
+\f1\b0 \cf3 \strokec3  \cf8 \strokec8 choice\cf3 \strokec3  
+\f2\b \cf6 \strokec6 in
+\f1\b0 \cf3 \strokec3  \cf8 \strokec8 question.choice_set.all\cf3 \strokec3  \cf7 \strokec7 %\}\cf3 \strokec3 \
+    <
+\f2\b \cf6 \strokec6 li
+\f1\b0 \cf3 \strokec3 >\cf7 \strokec7 \{\{\cf3 \strokec3  \cf8 \strokec8 choice.choice_text\cf3 \strokec3  \cf7 \strokec7 \}\}\cf3 \strokec3  -- \cf7 \strokec7 \{\{\cf3 \strokec3  \cf8 \strokec8 choice.votes\cf3 \strokec3  \cf7 \strokec7 \}\}\cf3 \strokec3  vote\cf7 \strokec7 \{\{\cf3 \strokec3  \cf8 \strokec8 choice.votes\cf10 \strokec10 |\cf14 \strokec14 pluralize\cf3 \strokec3  \cf7 \strokec7 \}\}\cf3 \strokec3 </
+\f2\b \cf6 \strokec6 li
+\f1\b0 \cf3 \strokec3 >\
+\cf7 \strokec7 \{%\cf3 \strokec3  
+\f2\b \cf6 \strokec6 endfor
+\f1\b0 \cf3 \strokec3  \cf7 \strokec7 %\}\cf3 \strokec3 \
+</
+\f2\b \cf6 \strokec6 ul
+\f1\b0 \cf3 \strokec3 >\
+\
+<
+\f2\b \cf6 \strokec6 a
+\f1\b0 \cf3 \strokec3  \cf9 \strokec9 href\cf10 \strokec10 =\cf11 \strokec11 "\cf7 \strokec7 \{%\cf3 \strokec3  
+\f2\b \cf6 \strokec6 url
+\f1\b0 \cf3 \strokec3  \cf11 \strokec11 'polls:detail'\cf3 \strokec3  \cf8 \strokec8 question.id\cf3 \strokec3  \cf7 \strokec7 %\}\cf11 \strokec11 "\cf3 \strokec3 >Vote again?</
+\f2\b \cf6 \strokec6 a
+\f1\b0 \cf3 \strokec3 >\
+\
+\pard\pardeftab720\sl633\sa345\partightenfactor0
+
+\f3\fs58 \cf12 \cb13 \strokec12 Use views gen\'e9ricas: Menos c\'f3digo \'e9 melhor{\field{\*\fldinst{HYPERLINK "https://docs.djangoproject.com/pt-br/1.10/intro/tutorial04/#use-generic-views-less-code-is-better"}}{\fldrslt 
+\b\fs46 \cf17 \strokec17 \'b6}}\
+\pard\pardeftab720\sl340\sa280\partightenfactor0
+
+\fs28 \cf12 N\'f3s iremos:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl340\sa280\partightenfactor0
+\ls1\ilvl0\cf12 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec12 Converta o URLconf.\cb1 \uc0\u8232 \
+\ls1\ilvl0\cb13 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec12 Delete algumas das views antigas, desnecess\'e1rias.\cb1 \uc0\u8232 \
+\ls1\ilvl0\cb13 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec12 Introduz novas views baseadas em views gen\'e9ricas Django\'92s.\cb1 \uc0\u8232 \
+\pard\pardeftab720\sl528\sa288\partightenfactor0
+
+\b\fs48 \cf12 \cb13 Views alteradas{\field{\*\fldinst{HYPERLINK "https://docs.djangoproject.com/pt-br/1.10/intro/tutorial04/#amend-views"}}{\fldrslt 
+\fs38 \cf17 \strokec17 \'b6}}\
+\pard\pardeftab720\sl340\sa280\partightenfactor0
+
+\b0\fs28 \cf12 Em seguida, vamos remover a nossas velhas views 
+\f2\b \cf3 \strokec3 index
+\f3\b0 \cf12 \strokec12 , `` detail``, e 
+\f2\b \cf3 \strokec3 results
+\f3\b0 \cf12 \strokec12  e usar views gen\'e9ricas do Django em seu lugar. Para fazer isso, abra o arquivo 
+\f2\b \cf3 \strokec3 polls/views.py
+\f3\b0 \cf12 \strokec12  e alterar para:\
+\pard\pardeftab720\sl320\partightenfactor0
+
+\f1 \cf3 \cb4 \strokec3 polls/views.py\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f2\b\fs34 \cf6 \cb5 \strokec6 from
+\f1\b0 \cf3 \strokec3  
+\f2\b \cf14 \strokec14 django.shortcuts
+\f1\b0 \cf3 \strokec3  
+\f2\b \cf6 \strokec6 import
+\f1\b0 \cf3 \strokec3  get_object_or_404, render\
+
+\f2\b \cf6 \strokec6 from
+\f1\b0 \cf3 \strokec3  
+\f2\b \cf14 \strokec14 django.http
+\f1\b0 \cf3 \strokec3  
+\f2\b \cf6 \strokec6 import
+\f1\b0 \cf3 \strokec3  HttpResponseRedirect\
+
+\f2\b \cf6 \strokec6 from
+\f1\b0 \cf3 \strokec3  
+\f2\b \cf14 \strokec14 django.urls
+\f1\b0 \cf3 \strokec3  
+\f2\b \cf6 \strokec6 import
+\f1\b0 \cf3 \strokec3  reverse\
+
+\f2\b \cf6 \strokec6 from
+\f1\b0 \cf3 \strokec3  
+\f2\b \cf14 \strokec14 django.views
+\f1\b0 \cf3 \strokec3  
+\f2\b \cf6 \strokec6 import
+\f1\b0 \cf3 \strokec3  generic\
+\
+
+\f2\b \cf6 \strokec6 from
+\f1\b0 \cf3 \strokec3  
+\f2\b \cf14 \strokec14 .models
+\f1\b0 \cf3 \strokec3  
+\f2\b \cf6 \strokec6 import
+\f1\b0 \cf3 \strokec3  Choice, Question\
+\
+\
+
+\f2\b \cf6 \strokec6 class
+\f1\b0 \cf3 \strokec3  
+\f2\b \cf14 \strokec14 IndexView
+\f1\b0 \cf3 \strokec3 (generic\cf10 \strokec10 .\cf3 \strokec3 ListView):\
+    template_name \cf10 \strokec10 =\cf3 \strokec3  \cf11 \strokec11 'polls/index.html'\cf3 \strokec3 \
+    context_object_name \cf10 \strokec10 =\cf3 \strokec3  \cf11 \strokec11 'latest_question_list'\cf3 \strokec3 \
+\
+    
+\f2\b \cf6 \strokec6 def
+\f1\b0 \cf3 \strokec3  \cf14 \strokec14 get_queryset\cf3 \strokec3 (\cf6 \strokec6 self\cf3 \strokec3 ):\
+        
+\f4\i \cf11 \strokec11 """Return the last five published questions."""
+\f1\i0 \cf3 \strokec3 \
+        
+\f2\b \cf6 \strokec6 return
+\f1\b0 \cf3 \strokec3  Question\cf10 \strokec10 .\cf3 \strokec3 objects\cf10 \strokec10 .\cf3 \strokec3 order_by(\cf11 \strokec11 '-pub_date'\cf3 \strokec3 )[:\cf10 \strokec10 5\cf3 \strokec3 ]\
+\
+\
+
+\f2\b \cf6 \strokec6 class
+\f1\b0 \cf3 \strokec3  
+\f2\b \cf14 \strokec14 DetailView
+\f1\b0 \cf3 \strokec3 (generic\cf10 \strokec10 .\cf3 \strokec3 DetailView):\
+    model \cf10 \strokec10 =\cf3 \strokec3  Question\
+    template_name \cf10 \strokec10 =\cf3 \strokec3  \cf11 \strokec11 'polls/detail.html'\cf3 \strokec3 \
+\
+\
+
+\f2\b \cf6 \strokec6 class
+\f1\b0 \cf3 \strokec3  
+\f2\b \cf14 \strokec14 ResultsView
+\f1\b0 \cf3 \strokec3 (generic\cf10 \strokec10 .\cf3 \strokec3 DetailView):\
+    model \cf10 \strokec10 =\cf3 \strokec3  Question\
+    template_name \cf10 \strokec10 =\cf3 \strokec3  \cf11 \strokec11 'polls/results.html'\cf3 \strokec3 \
+\
+\
+
+\f2\b \cf6 \strokec6 def
+\f1\b0 \cf3 \strokec3  \cf14 \strokec14 vote\cf3 \strokec3 (request, question_id):\
+    \cf10 \strokec10 ...\cf3 \strokec3  
+\f4\i \cf15 \strokec15 # same as above, no changes needed.
+\f1\i0 \cf3 \cb1 \strokec3 \
+\pard\tx720\pardeftab720\sl340\sa280\partightenfactor0
+
+\f3\fs28 \cf12 \strokec12 \
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f1\fs34 \cf3 \strokec3 \
+}
