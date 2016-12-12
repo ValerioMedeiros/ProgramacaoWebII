@@ -12,6 +12,9 @@ urlpatterns=[
 
 
     url(r'^produto/list$',produto_list,name='produto_list'),
+
+    url(r'^produtos/exibir/(\d+)',exibirproduto,name='exibirproduto'),#Exemplo aula
+
     #url(r'^produto/detail/(?P<pk>\d+)$',produto_detail,name='produto_detail'),
     url(r'^produto/new/$',produto_new,name='produto_new'),
     url(r'^produto/update/(?P<pk>\d+)$',produto_update,name='produto_update'),

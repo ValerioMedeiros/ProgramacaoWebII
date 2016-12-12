@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sistema de Vendas</title>
+    <title>Sistema de Vendas </title>
     <!-- A ordem de carregamento interfere no funcionamento da aplicação. -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css" rel="stylesheet">
@@ -15,13 +15,17 @@
     <script src="{% static 'jquery-formset/jquery.formset.js' %}" type="javascript"></script>
 </head>
 <body>
+
+
+    <center><h1>IFRN (Proj. didático) </h1></center>
     <h2>Sistema de Vendas - Usuário: {{ request.user.first_name }}</h2>
     <nav>
         <a href="{% url 'unidade_list' %}"> Unidades </a>
-        <a href="{% url 'cargos' %}"> Cargos</a>
+        {#  <a href="{% url 'cargos' %}"> Cargos</a> #}
         <a href="{% url 'produto_list' %}"> Produtos</a>
-        <a href="{% url 'clientes' %}"> Clientes</a>
-        <a href="{% url 'funcionarios' %}"> Funcionários</a>
+        {#  <a href="{% url 'clientes' %}"> Clientes</a>#}
+        <a href="{% url 'cliente_list' %}"> Clientes</a>
+        {#  <a href="{% url 'funcionarios' %}"> Funcionários</a> #}
         <a href="{% url 'venda_list' %}"> Vendas</a>
         <a href="{% url 'admin:index' %}"> Administração</a>
         <a href="{% url 'logout' %}">Sair</a>

@@ -19,6 +19,11 @@ def erro_permissao(request):
     return render(request,'utils/permissao.html')
 
 @permission_required('appvendas.view_produto',login_url='erro_permissao')
+def exibirproduto(request,id_produto): # Exemplo dos slides
+    produto=Produto.objects.get(id=id_produto)
+    return render(request,'exibirproduto.html',{'produto':produto})
+
+@permission_required('appvendas.view_produto',login_url='erro_permissao')
 def produto_list(request):
 
     criterio=request.GET.get('criterio')
