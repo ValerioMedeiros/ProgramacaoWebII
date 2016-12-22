@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite name="nosetests" tests="3" errors="2" failures="0" skip="0"><testcase classname="appvendas.tests.QuestionMethodTests" name="test_was_published_recently_with_future_question" time="11.420"></testcase><testcase classname="nose.failure.Failure" name="runTest" time="0.000"><error type="builtins.TypeError" message="'float' object is not callable"><![CDATA[Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/unittest/case.py", line 57, in testPartExecutor
+    yield
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/unittest/case.py", line 574, in run
+    testMethod()
+  File "/Users/valerio/Documents/Virtual_env_django_1.9/lib/python3.4/site-packages/nose/failure.py", line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File "/Users/valerio/Documents/Virtual_env_django_1.9/lib/python3.4/site-packages/nose/loader.py", line 418, in loadTestsFromName
+    addr.filename, addr.module)
+  File "/Users/valerio/Documents/Virtual_env_django_1.9/lib/python3.4/site-packages/nose/importer.py", line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File "/Users/valerio/Documents/Virtual_env_django_1.9/lib/python3.4/site-packages/nose/importer.py", line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/imp.py", line 235, in load_module
+    return load_source(name, filename, file)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/imp.py", line 171, in load_source
+    module = methods.load()
+  File "<frozen importlib._bootstrap>", line 1220, in load
+  File "<frozen importlib._bootstrap>", line 1200, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1129, in _exec
+  File "<frozen importlib._bootstrap>", line 1448, in exec_module
+  File "<frozen importlib._bootstrap>", line 321, in _call_with_frames_removed
+  File "/Users/valerio/Dropbox/htdocs/material/disciplinas/Programacao_WEB_II/RepositorioGit/exemplos_dj_1.9/projetovendas/appvendas/bd.py", line 52, in <module>
+    print(venda.valorTotal())
+TypeError: 'float' object is not callable
+]]></error></testcase><testcase classname="nose.failure.Failure" name="runTest" time="0.000"><error type="builtins.TypeError" message="'float' object is not callable"><![CDATA[Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/unittest/case.py", line 57, in testPartExecutor
+    yield
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/unittest/case.py", line 574, in run
+    testMethod()
+  File "/Users/valerio/Documents/Virtual_env_django_1.9/lib/python3.4/site-packages/nose/failure.py", line 39, in runTest
+    raise self.exc_val.with_traceback(self.tb)
+  File "/Users/valerio/Documents/Virtual_env_django_1.9/lib/python3.4/site-packages/nose/loader.py", line 418, in loadTestsFromName
+    addr.filename, addr.module)
+  File "/Users/valerio/Documents/Virtual_env_django_1.9/lib/python3.4/site-packages/nose/importer.py", line 47, in importFromPath
+    return self.importFromDir(dir_path, fqname)
+  File "/Users/valerio/Documents/Virtual_env_django_1.9/lib/python3.4/site-packages/nose/importer.py", line 94, in importFromDir
+    mod = load_module(part_fqname, fh, filename, desc)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/imp.py", line 235, in load_module
+    return load_source(name, filename, file)
+  File "/Library/Frameworks/Python.framework/Versions/3.4/lib/python3.4/imp.py", line 171, in load_source
+    module = methods.load()
+  File "<frozen importlib._bootstrap>", line 1220, in load
+  File "<frozen importlib._bootstrap>", line 1200, in _load_unlocked
+  File "<frozen importlib._bootstrap>", line 1129, in _exec
+  File "<frozen importlib._bootstrap>", line 1448, in exec_module
+  File "<frozen importlib._bootstrap>", line 321, in _call_with_frames_removed
+  File "/Users/valerio/Dropbox/htdocs/material/disciplinas/Programacao_WEB_II/RepositorioGit/exemplos_dj_1.9/projetovendas/appvendas/queries.py", line 66, in <module>
+    venda.dataVenda.strftime("%d/%m/%Y"), venda.valorTotal()))
+TypeError: 'float' object is not callable
+]]></error></testcase></testsuite>
