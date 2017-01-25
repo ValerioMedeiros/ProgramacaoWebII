@@ -18,7 +18,7 @@
 
 
     <center><h1>IFRN (Proj. didático) </h1></center>
-    <h2>Sistema de Vendas - Usuário: {{ request.user.first_name }}</h2>
+    <h2>Sistema de Vendas - Usuários: {{ request.user.username }}</h2>
     <nav>
         <a href="{% url 'unidade_list' %}"> Unidades </a>
         {#  <a href="{% url 'cargos' %}"> Cargos</a> #}

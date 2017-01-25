@@ -15,8 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import patterns,include,url
 from django.contrib import admin
-
+from django.views.generic import RedirectView
+from appvendas.views import home
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^appvendas/',include('appvendas.urls'))
+    url(r'^appvendas/',include('appvendas.urls')),
+
+    url(r'^accounts/profile/$', home, name='home'), #Perfil do usuário (Não preparado)
+    url(r'^$', home, name='home'),  #home
+
 ]
